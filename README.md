@@ -1,0 +1,1 @@
+This is a simple example of how to setup a REST API using Django Tastypie
