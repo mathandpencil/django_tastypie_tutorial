@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %} 
+
+<p> Hello World </p>
+<p> Here is a list of the User Models in your database: </p>
+
+<div id="my-model-list" class="list">
+</div>
+
+<script>
+
+	var view = new EXAMPLE.VIEWS.ExampleList()
+	EXAMPLE.COLLECTIONS.Users.fetch({ reset : true })
+</script>
+
+
+{% endblock %}

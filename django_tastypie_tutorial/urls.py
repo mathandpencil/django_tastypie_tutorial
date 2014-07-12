@@ -7,9 +7,9 @@ from apps.accounts import resources as account_resources
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'django_tastypie_tutorial.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
+    
+	url(r'^$', 'apps.accounts.views.index', name='index'),
+	
 
     url(r'^admin/', include(admin.site.urls)),
 )
