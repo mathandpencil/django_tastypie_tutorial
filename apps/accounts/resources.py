@@ -22,26 +22,26 @@ class UserResource(ModelResource):
 		allowed_methods = ('get', 'post', 'put','delete', 'patch')
 		filtering = { "id" : ALL }
 		
-	# def prepend_urls(self):
-	# 	return [
-	# 		url(r"^(?P<resource_name>%s)/login%s$" %
-	# 			(self._meta.resource_name, trailing_slash()),
-	# 			self.wrap_view('handle_login'), name="api_login"),
-	# 	]
-	#
-	# def handle_login(self, request, **kwargs):
-	# 	username = request.REQUEST.get("username")
-	# 	password = request.REQUEST.get("password")
-	# 	user = authenticate(username=username, password=password)
-	#
-	# 	msg = ""
-	# 	success = True
-	# 	next_url = ""
-	# 	if user:
-	# 		login(request, user)
-	# 		next_url = reverse('events:add')
-	# 	else:
-	# 		msg = "Invalid Username or Password"
-	# 		success = False
-	#
-	# 	return self.create_response(request, { 'msg' : msg, 'success' : success, 'next_url' : next_url })
+	def prepend_urls(self):
+		return [
+			url(r"^(?P<resource_name>%s)/login%s$" %
+				(self._meta.resource_name, trailing_slash()),
+				self.wrap_view('handle_login'), name="api_login"),
+		]
+
+	def handle_login(self, request, **kwargs):
+		username = request.REQUEST.get("username")
+		password = request.REQUEST.get("password")
+		user = authenticate(username=username, password=password)
+
+		msg = ""
+		success = True
+		next_url = ""
+		if user:
+			login(request, user)
+			next_url = reverse('events:add')
+		else:
+			msg = "Invalid Username or Password"
+			success = False
+
+		return self.create_response(request, { 'msg' : msg, 'success' : success, 'next_url' : next_url })
